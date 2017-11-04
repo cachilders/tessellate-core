@@ -9,9 +9,10 @@ app.use(bodyParser.json());
 
 app.get('/', (req, res) => res.send('CONNECTED'));
 
-app.post('/io/tessellate', (res, req) => {
-  const { ip, name, message } = res.body;
-  db.one('INSERT INTO tiles(ip, name, message) VALUES($1, $2, $3) RETURNING id', [ip, name, message])
+app.post('/io/tessellate', (req, res) => {
+  const { ip, name, message } = req.body;
+  const date = new Date();
+  db.one('INSERT INTO tiles(ip, name, message, created_at) VALUES($1, $2, $3, $4) RETURNING id', [ip, name, message, date])
     .then(data => res.send(`Successfully created record #${data.id}.`))
     .catch(error => res.send(error));
 });
