@@ -1,0 +1,31 @@
+{
+  "name": "tessellate-core",
+  "version": "0.0.1",
+  "description": "A simple IoT service POC",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cachilders/tessellate-core.git"
+  },
+  "keywords": [
+    "tessel",
+    "johnny-five",
+    "rpi",
+    "nodemcu",
+    "node"
+  ],
+  "author": "Casey A. Childers",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cachilders/tessellate-core/issues"
+  },
+  "homepage": "https://github.com/cachilders/tessellate-core#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "pg-promise": "^7.2.1"
+  }
+}
