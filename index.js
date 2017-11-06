@@ -9,6 +9,12 @@ app.use(bodyParser.json());
 
 app.get('/', (req, res) => res.send('CONNECTED'));
 
+app.get('/tiles', (req, res) => {
+  db.any('SELECT name, ip, message FROM tiles ORDER BY created_at DESC LIMIT 1000')
+    .then(data => res.send(data))
+    .catch(error => res.send(error));
+});
+
 app.post('/io/tessellate', (req, res) => {
   console.log('RECIEVED', JSON.stringify({
     BODY: req.body,
