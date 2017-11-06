@@ -10,10 +10,14 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => res.send('CONNECTED'));
 
 app.post('/io/tessellate', (req, res) => {
+  console.log('RECIEVED', JSON.stringify({
+    BODY: req.body,
+    HEAD: req.headers
+  }))
   const { ['x-forwarded-for']: ip } = req.headers;
   const { name, message } = req.body;
   const date = new Date();
-  console.log(ip, name, message)
+  console.log('RECORDING', ip, name, message)
   db.one('INSERT INTO tiles(ip, name, message, created_at) VALUES($1, $2, $3, $4) RETURNING id, name', [ip, name, message, date])
     .then(data => res.send(`Successfully created record #${data.id} for ${data.name}.`))
     .catch(error => res.send(error));
