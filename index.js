@@ -24,7 +24,7 @@ app.post('/io/tessellate', (req, res) => {
   const { name, message } = req.body;
   const date = new Date();
   console.log('RECORDING', ip, name, message)
-  db.one('INSERT INTO tiles(ip, name, message, created_at) VALUES($1, $2, $3, $4) RETURNING id, name', [ip, name, message, date])
+  db.one('INSERT INTO tiles(ip, name, message, created_at) VALUES($1, $2, $3, $4) RETURNING id, name', [ip, name.trim(), message.trim(), date])
     .then(data => res.send(`Successfully created record #${data.id} for ${data.name}.`))
     .catch(error => res.send(error));
 });
