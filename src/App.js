@@ -41,7 +41,8 @@ class App extends Component {
           <Layout size={{ x: (width/47), y: (height/54) }}>
             { grid.map((hex, i) => {
               const color = tiles ? `${tiles[i]['name'].split(':').slice(1, 4).join('')}` : 'fff';
-              return <Hexagon key={i} q={hex.q} r={hex.r} s={hex.s} cellStyle={{fill: color}} />;
+              const tooltip = tiles ? tiles[i]['message'] : '';
+              return <Hexagon key={i} q={hex.q} r={hex.r} s={hex.s} cellStyle={{fill: color}}><title>{tooltip}</title></Hexagon>;
             }) }
           </Layout>
         </HexGrid>
