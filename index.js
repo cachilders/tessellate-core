@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(express.static('build'));
 
 app.get('/api/tiles', (req, res) => {
-  db.any('SELECT name, ip, message FROM tiles ORDER BY created_at DESC LIMIT 1025')
+  db.any('SELECT id, name, message FROM tiles ORDER BY created_at DESC LIMIT 1025')
     .then(data => res.send(data))
     .catch(error => res.send(error));
 });

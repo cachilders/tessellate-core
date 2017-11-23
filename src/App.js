@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { GridGenerator, HexGrid, Layout, Hexagon, Text, Pattern } from 'react-hexgrid';
 import axios from 'axios';
 import './App.css';
+import { setInterval } from 'timers';
 
 class App extends Component {
   constructor(props) {
@@ -15,14 +16,19 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('api/tiles')
-      .then(res => this.setState({ tiles: res.data }))
-      .catch(console.error);
+    this.fetchTiles();
+    setInterval(this.fetchTiles.bind(this), 20);
     window.addEventListener('resize', this.onResize.bind(this));
   }
   
   componentWillUnmount() {
     window.removeEventListener('resize', this.onResize.bind(this));
+  }
+
+  fetchTiles() {
+    axios.get('api/tiles')
+      .then(res => this.setState({ tiles: res.data }))
+      .catch(console.error);
   }
 
   onResize(){
@@ -40,9 +46,10 @@ class App extends Component {
         <HexGrid width={width} height={height} viewBox={'0 0 ' + width + ' ' + height}>
           <Layout size={{ x: (width/47), y: (height/54) }}>
             { grid.map((hex, i) => {
+              const key = tiles ? tiles[i]['id'] : '';
               const color = tiles ? `${tiles[i]['name'].split(':').slice(1, 4).join('')}` : 'fff';
               const tooltip = tiles ? tiles[i]['message'] : '';
-              return <Hexagon key={i} q={hex.q} r={hex.r} s={hex.s} cellStyle={{fill: color}}><title>{tooltip}</title></Hexagon>;
+              return <Hexagon key={key} q={hex.q} r={hex.r} s={hex.s} cellStyle={{fill: color}}><title>{tooltip}</title></Hexagon>;
             }) }
           </Layout>
         </HexGrid>
