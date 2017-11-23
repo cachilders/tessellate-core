@@ -47,7 +47,14 @@ class App extends Component {
           <Layout size={{ x: (width/47), y: (height/54) }}>
             { grid.map((hex, i) => {
               const key = tiles ? tiles[i]['id'] : '';
-              const color = tiles ? `${tiles[i]['name'].split(':').slice(1, 4).join('')}` : 'fff';
+              const color = tiles ? `${tiles[i]['name']
+                .split(':')
+                .reduce((acc, v, i, c) => {
+                  if (i % 2 > 0) return acc;
+                  acc.push(Math.floor((parseInt(c[i], 16) + parseInt(c[i+1], 16))/2).toString(16).padStart(2, '0'));
+                  return acc;
+                }, [])
+                .join('')}` : 'fff';
               const tooltip = tiles ? tiles[i]['message'] : '';
               return <Hexagon key={key} q={hex.q} r={hex.r} s={hex.s} cellStyle={{fill: color}}><title>{tooltip}</title></Hexagon>;
             }) }
