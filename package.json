@@ -1,6 +1,6 @@
 {
   "name": "tessellate-core",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A simple IoT service POC",
   "main": "index.js",
   "repository": {
@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/cachilders/tessellate-core/issues"
   },
-  "homepage": "http://tessellatecore-env.hfeqqqyqqv.us-east-1.elasticbeanstalk.com",
+  "homepage": "http://tessellate.cc",
   "dependencies": {
     "autoprefixer": "7.1.6",
     "axios": "^0.17.1",
@@ -69,7 +69,7 @@
     "start": "node index.js",
     "dev": "node index.js && node scripts/start.js",
     "build": "node scripts/build.js",
-    "zip": "zip deploy/tessellate_core_5.zip -r * .[^.]* -x */.* *.git* .* *.zip *.csv *.log *.md *.bak *.swp *.txt *.sh deploy/**\\* src/**\\* config/**\\* scripts/**\\* public/**\\* config/**\\* *.elasticbeanstalk* *.ebextensions*",
+    "zip": "zip deploy/tessellate_core_6.zip -r * .[^.]* -x */.* *.git* .* *.zip *.csv *.log *.md *.bak *.swp *.txt *.sh deploy/**\\* src/**\\* config/**\\* scripts/**\\* public/**\\* config/**\\* *.elasticbeanstalk* *.ebextensions*",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
