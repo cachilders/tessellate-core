@@ -6,6 +6,6 @@ At present the core receives (very limited) data from devices (going on 30, [add
 
 The backend is Express. The frontend is React (scaffolded with create-react-app). It gets a lot of help from the delightful [react-hexgrid](https://github.com/Hellenic/react-hexgrid) library.
 
-![Tessellate Screenshot](assets/images/tessellate12122007.png)
+![Tessellate Screenshot](assets/images/tessellate12102017.png)
 
 It will grow. For now it's just pretty.
